@@ -1,4 +1,4 @@
-let title = "project",
+const title = "project",
     screens = "Простые, Сложные, Интерактивные",
     screenPrice = 12345,
     rollback = 50,
