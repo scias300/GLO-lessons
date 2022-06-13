@@ -1,100 +1,28 @@
 'use strict';
 
-let allServicePrices,
-    fullPrice,
-    servicePercentPrice;
+const books = document.querySelectorAll('.book');
+const body = document.querySelector('body');
+const adv = document.querySelector('.adv');
+const book2Chapters = books[0].childNodes[3].children;
+const book5Chapters = books[5].childNodes[3].children;
 
-const isNumber = function (num) {
-    if (num === null) {
-        return false;
-    }
-    return !isNaN(parseFloat(num)) && isFinite(num);
-};
-const appData = {
-    title: '',
-    screens: '',
-    screenPrice: 0,
-    rollback: 50,
-    adaptive: true,
-    service1: '',
-    service2: '',
-    asking: function () {
-        appData.title = prompt('Как называется ваш проект?', 'Название проекта');
-        appData.screens = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные');
+books[0].before(books[1]);
+books[5].after(books[2]);
+books[3].before(books[4]);
 
-        do {
-            appData.screenPrice = prompt('Сколько будет стоить данная работа?');
-        }
-        while (!isNumber(appData.screenPrice));
-        appData.screenPrice = +appData.screenPrice.trim();
+body.style.backgroundImage = 'url(./image/you-dont-know-js.jpg)';
 
-        appData.adaptive = confirm('Нужен ли адаптив на сайте?');
-    },
-    getRollbackMessage: function (price) {
-        if (price >= 30000) {
-            return 'Даем скидку в 10%';
-        } else if (price < 30000 && price >= 15000) {
-            return 'Даем скидку в 5%';
-        } else if (price < 15000 && price >= 0) {
-            return 'Скидка не предусмотрена';
-        } else {
-            return 'Что то пошло не так';
-        }
-    },
-    getAllServicePrices: function () {
-        let sum = 0;
-        let num1,
-            num2;
+books[4].childNodes[1].childNodes[1].textContent = 'Книга 3. this и Прототипы Объектов';
 
-        for (let i = 0; i < 2; i++) {
+adv.remove();
 
-            if (i === 0) {
-                appData.service1 = prompt('Какой дополнительный тип услуги нужен?', 'Дополнительная услуга 1');
+book2Chapters[9].after(book2Chapters[2]);
+book2Chapters[2].after(book2Chapters[5]);
+book2Chapters[4].before(book2Chapters[7]);
+book5Chapters[1].after(book5Chapters[9]);
+book5Chapters[5].after(book5Chapters[3]);
+book5Chapters[8].after(book5Chapters[6]);
 
-                do {
-                    num1 = prompt('Сколько это будет стоить?');
-                }
-                while (!isNumber(num1));
-
-            } else if (i === 1) {
-                appData.service2 = prompt('Какой дополнительный тип услуги нужен?', 'Дополнительная услуга 2');
-
-                do {
-                    num2 = prompt('Сколько это будет стоить?');
-                }
-                while (!isNumber(num2));
-            }
-        }
-        num1 = num1.trim();
-        num2 = num2.trim();
-        sum = +num1 + (+num2);
-        return sum;
-    },
-    getFullPrice: function () {
-        return +appData.screenPrice + allServicePrices;
-    },
-    getTitle: function () {
-        let newTitle = appData.title.trim();
-        return newTitle[0].toUpperCase() + newTitle.slice(1).toLowerCase();
-    },
-    getServicePercentPrices: function () {
-        return Math.ceil(fullPrice - fullPrice * (appData.rollback / 100));
-    },
-    start: function () {
-        appData.asking();
-        allServicePrices = appData.getAllServicePrices();
-        fullPrice = appData.getFullPrice();
-        servicePercentPrice = appData.getServicePercentPrices();
-        appData.logger();
-    },
-    logger: function () {
-        console.log(appData.screens.toLowerCase().split(', '));
-        console.log(appData.getRollbackMessage(fullPrice));
-        console.log(servicePercentPrice);
-        for (let key in appData) {
-            console.log('Название ' + key + ' Значение ' + appData[key]);
-        }
-    }
-};
-
-appData.start();
+let ch8 = book5Chapters[1].cloneNode(true);
+ch8.textContent = 'Глава 8: За пределами ES6';
+books[2].childNodes[3].children[8].after(ch8);
