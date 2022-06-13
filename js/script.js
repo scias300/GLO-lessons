@@ -2,12 +2,19 @@
 
 const title = document.getElementsByTagName('h1'),
     buttons = document.getElementsByClassName('handler_btn'),
+    calc = buttons[0],
+    reset = buttons[1],
     buttonPlus = document.querySelector('.screen-btn'),
     otherItemsPercent = document.querySelectorAll('.other-items.percent'),
     otherItemsNumber = document.querySelectorAll('.other-items.number'),
     range = document.querySelector('.rollback input[type="range"]'),
     rangeValue = document.querySelector('.rollback .range-value'),
-    totalInputs = document.getElementsByClassName('total-input');
+    totalInputs = document.getElementsByClassName('total-input'),
+    totalInputCost = totalInputs[0],
+    totalInputScreens = totalInputs[1],
+    totalInputServices = totalInputs[2],
+    totalInputTotal = totalInputs[3],
+    totalInputTotalRollback = totalInputs[4];
 let screens = document.querySelectorAll('.screen');
 
 const appData = {
