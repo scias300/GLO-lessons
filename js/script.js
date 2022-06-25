@@ -36,12 +36,12 @@ const appData = {
     servicesNumber: {},
     init: function () {
         this.addTitle();
-        const startApp = this.start.bind(appData);
+        const startApp = this.start.bind(this);
         calc.addEventListener('click', startApp);
         buttonPlus.addEventListener('click', this.addScreenBlock);
-        const appAddRollback = this.addRollback.bind(appData);
+        const appAddRollback = this.addRollback.bind(this);
         range.addEventListener('input', appAddRollback);
-        const appReset = this.reset.bind(appData);
+        const appReset = this.reset.bind(this);
         reset.addEventListener('click', appReset);
         cmsOpen.addEventListener('click', this.showCms);
         cmsSelect.addEventListener('input', this.chooseCMS);
@@ -198,7 +198,7 @@ const appData = {
         this.addServices();
         this.addPrices();
         this.showResult();
-        // const appLogger = this.logger.bind(appData);
+        // const appLogger = this.logger.bind(this);
         // appLogger();
     },
     logger: function () {
